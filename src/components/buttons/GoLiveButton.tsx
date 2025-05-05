@@ -1,10 +1,10 @@
 import { DialogButton } from "@decky/ui";
-import { useDeckcordState } from "../../hooks/useDeckcordState";
+import { useDiscdeckState } from "../../hooks/useDiscdeckState";
 import { FaVideo } from "react-icons/fa";
 import { call } from "@decky/api";
 
 export function GoLiveButton() {
-  const state = useDeckcordState();
+  const state = useDiscdeckState();
 
   if (state?.vc == null || state?.vc == undefined)
     return (<div></div>);

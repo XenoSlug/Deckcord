@@ -89,7 +89,7 @@ class Plugin:
 
     @classmethod
     async def _main(cls):
-        logger.info("Starting Deckcord backend")
+        logger.info("Starting Discdeck backend")
         await initialize()
         logger.info("Discord initialized")
 
@@ -173,12 +173,12 @@ class Plugin:
                 {"title": notification["title"], "body": notification["body"]}
             )
             await cls.shared_js_tab.ensure_open()
-            await cls.shared_js_tab.evaluate(f"window.DECKCORD.dispatchNotification(JSON.parse('{payload}'));")
+            await cls.shared_js_tab.evaluate(f"window.DISCDECK.dispatchNotification(JSON.parse('{payload}'));")
 
     @classmethod
     async def connect_ws(cls):
         await cls.shared_js_tab.ensure_open()
-        await cls.shared_js_tab.evaluate(f"window.DECKCORD.connectWs()")
+        await cls.shared_js_tab.evaluate(f"window.DISCDECK.connectWs()")
 
     @classmethod
     async def get_state(cls):
@@ -224,7 +224,7 @@ class Plugin:
         if r:
             return True
 
-        payload = dumps({"title": "Deckcord", "body": "Error while posting screenshot"})
+        payload = dumps({"title": "Discdeck", "body": "Error while posting screenshot"})
         await cls.shared_js_tab.ensure_open()
         await cls.shared_js_tab.evaluate(
             f"DeckyPluginLoader.toaster.toast(JSON.parse('{payload}'));"

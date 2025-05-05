@@ -1,5 +1,5 @@
 {
-  "name": "deckcord",
+  "name": "discdeck",
   "version": "0.3.5",
   "type": "module",
   "description": "Easy access to discord in game mode, and related functionalities",
@@ -10,7 +10,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/xenoslug/Deckcord.git"
+    "url": "git+https://github.com/xenoslug/Discdeck.git"
   },
   "keywords": [
     "decky",
@@ -21,9 +21,9 @@
   "author": "xenoslug, marios8543",
   "license": "BSD-3-Clause",
   "bugs": {
-    "url": "https://github.com/xenoslug/Deckcord/issues"
+    "url": "https://github.com/xenoslug/Discdeck/issues"
   },
-  "homepage": "https://github.com/xenoslug/Deckcord#readme",
+  "homepage": "https://github.com/xenoslug/Discdeck#readme",
   "devDependencies": {
     "@decky/rollup": "^1.0.1",
     "@decky/ui": "^4.8.1",

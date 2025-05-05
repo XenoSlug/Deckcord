@@ -12,13 +12,13 @@ import { FaDiscord } from "react-icons/fa";
 import { patchMenu } from "./patches/menuPatch";
 import { DiscordTab } from "./components/DiscordTab";
 import {
-  useDeckcordState,
+  useDiscdeckState,
   eventTarget,
-  DeckcordEvent,
+  DiscdeckEvent,
   isLoaded,
   isLoggedIn,
   WebRTCEvent,
-} from "./hooks/useDeckcordState";
+} from "./hooks/useDiscdeckState";
 
 import { MuteButton } from "./components/buttons/MuteButton";
 import { DeafenButton } from "./components/buttons/DeafenButton";
@@ -35,7 +35,7 @@ import { call, routerHook, toaster } from "@decky/api";
 declare global {
   interface Window {
     DISCORD_TAB: any;
-    DECKCORD: {
+    DISCDECK: {
       dispatchNotification: any;
       MIC_PEER_CONNECTION: any;
     };
@@ -43,7 +43,7 @@ declare global {
 }
 
 const Content = () => {
-  const state = useDeckcordState();
+  const state = useDiscdeckState();
   if (!state?.loaded) {
     return (
       <div style={{ display: "flex", justifyContent: "center" }}>
@@ -127,9 +127,9 @@ const Content = () => {
 };
 
 export default definePlugin(() => {
-  window.DECKCORD = {
+  window.DISCDECK = {
     dispatchNotification: (payload: { title: string; body: string }) => {
-      console.log("Dispatching Deckcord notification: ", payload);
+      console.log("Dispatching Discdeck notification: ", payload);
       toaster.toast(payload);
     },
     MIC_PEER_CONNECTION: undefined
@@ -137,7 +137,7 @@ export default definePlugin(() => {
 
   const setState = (data: any) => {
     if (data.webrtc) eventTarget.dispatchEvent(new WebRTCEvent(data.webrtc));
-    else eventTarget.dispatchEvent(new DeckcordEvent(data));
+    else eventTarget.dispatchEvent(new DiscdeckEvent(data));
   };
   call("get_state").then((s) => setState(s));
   let ws;
@@ -156,10 +156,10 @@ export default definePlugin(() => {
     const data = ev.data;
     console.log(data);
     if (data.offer) {
-      console.log("Deckcord: Starting RTC connection");
+      console.log("Discdeck: Starting RTC connection");
       if (peerConnection) peerConnection.close();
       peerConnection = new RTCPeerConnection();
-      window.DECKCORD.MIC_PEER_CONNECTION = peerConnection;
+      window.DISCDECK.MIC_PEER_CONNECTION = peerConnection;
       const localStream = await navigator.mediaDevices.getUserMedia({video: false, audio: true,});
       localStream.getTracks().forEach((track) => {
         peerConnection.addTrack(track, localStream);
@@ -167,14 +167,14 @@ export default definePlugin(() => {
       await peerConnection.setRemoteDescription(new RTCSessionDescription(data.offer));
       const answer = await peerConnection.createAnswer();
       await peerConnection.setLocalDescription(answer);
-      console.log("Deckcord: Sending RTC Answer");
+      console.log("Discdeck: Sending RTC Answer");
       await call("mic_webrtc_answer", answer);
     } else if (data.ice) {
       try {
         while (peerConnection.remoteDescription == null) await sleep(10);
         await peerConnection.addIceCandidate(data.ice);
       } catch (e) {
-        console.error("Deckcord: Error adding received ice candidate", e);
+        console.error("Discdeck: Error adding received ice candidate", e);
       }
     }
   });
@@ -221,7 +221,7 @@ export default definePlugin(() => {
   });
 
   return {
-    title: <div className={staticClasses.Title}>Deckcord</div>,
+    title: <div className={staticClasses.Title}>Discdeck</div>,
     content: <Content />,
     icon: <FaDiscord />,
     onDismount() {

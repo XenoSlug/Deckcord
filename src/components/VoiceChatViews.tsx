@@ -1,7 +1,7 @@
-import { useDeckcordState } from "../hooks/useDeckcordState";
+import { useDiscdeckState } from "../hooks/useDiscdeckState";
 
 export function VoiceChatChannel() {
-  const state = useDeckcordState();
+  const state = useDiscdeckState();
   if (state?.vc == undefined) return (<div></div>);
   return (
     <div style={{ marginTop: "-30px" }}>
@@ -12,7 +12,7 @@ export function VoiceChatChannel() {
 }
 
 export function VoiceChatMembers() {
-  const state = useDeckcordState();
+  const state = useDiscdeckState();
   if (state?.vc?.users == undefined) return (<div></div>);
   const members = [];
   for (const user of state?.vc?.users) {

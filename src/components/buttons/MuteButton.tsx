@@ -1,10 +1,10 @@
 import { DialogButton } from "@decky/ui";
-import { useDeckcordState } from "../../hooks/useDeckcordState";
+import { useDiscdeckState } from "../../hooks/useDiscdeckState";
 import { FaMicrophoneAlt, FaMicrophoneAltSlash } from "react-icons/fa";
 import { call } from "@decky/api";
 
 export function MuteButton() {
-  const state = useDeckcordState();
+  const state = useDiscdeckState();
 
   if (state?.me?.is_muted) {
     return (

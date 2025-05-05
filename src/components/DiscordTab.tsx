@@ -12,8 +12,8 @@ export const DiscordTab = () => {
             }
             else {
                 toaster.toast({
-                    title: "Deckcord",
-                    body: "Deckcord has not loaded yet!"
+                    title: "Discdeck",
+                    body: "Discdeck has not loaded yet!"
                 });
                 Router.Navigate("/library/home");
             }

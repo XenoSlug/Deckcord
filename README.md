@@ -1,4 +1,4 @@
-# Deckcord
+# Discdeck
 ## Discord on the Deck, made easy
 
 ## Features

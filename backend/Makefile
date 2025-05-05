@@ -2,7 +2,7 @@
 # you invoke make
 # Taken from https://github.com/marissa999/decky-recorder
 current_dir = $(shell pwd)
-container_name = deckcord-backend
+container_name = discdeck-backend
 .PHONY: all
 all:
 	docker build -t $(container_name) .
