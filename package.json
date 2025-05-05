@@ -1,6 +1,6 @@
 {
   "name": "deckcord",
-  "version": "0.3.4",
+  "version": "0.3.5",
   "type": "module",
   "description": "Easy access to discord in game mode, and related functionalities",
   "scripts": {
@@ -10,7 +10,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/marios8543/Deckcord.git"
+    "url": "git+https://github.com/xenoslug/Deckcord.git"
   },
   "keywords": [
     "decky",
@@ -18,12 +18,12 @@
     "steam-deck",
     "deck"
   ],
-  "author": "marios8543",
+  "author": "xenoslug, marios8543",
   "license": "BSD-3-Clause",
   "bugs": {
-    "url": "https://github.com/marios8543/Deckcord/issues"
+    "url": "https://github.com/xenoslug/Deckcord/issues"
   },
-  "homepage": "https://github.com/marios8543/Deckcord#readme",
+  "homepage": "https://github.com/xenoslug/Deckcord#readme",
   "devDependencies": {
     "@decky/rollup": "^1.0.1",
     "@decky/ui": "^4.8.1",
