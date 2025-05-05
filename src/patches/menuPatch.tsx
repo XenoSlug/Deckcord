@@ -50,7 +50,7 @@ const _patchMenu = () => {
                         MenuItemComponent={menuItemElement.type}
                     />
 
-                const browserPosition = Number.parseInt(localStorage.getItem("DECKCORD_MENU_POSITION") || "3" as string);
+                const browserPosition = Number.parseInt(localStorage.getItem("DISCDECK_MENU_POSITION") || "3" as string);
 
                 if (browserPosition === 9) ret.props.children.splice(itemIndexes[itemIndexes.length - 1] + 1, 0, newItem)
                 else ret.props.children.splice(itemIndexes[browserPosition - 1], 0, newItem)
@@ -97,7 +97,7 @@ const MenuItemWrapper: FC<MenuItemWrapperProps> = ({ MenuItemComponent, ...props
         selectedOption: 1,
         onChange: (data: any) => {
             unpatchMethod();
-            localStorage.setItem("DECKCORD_MENU_POSITION", data.data);
+            localStorage.setItem("DISCDECK_MENU_POSITION", data.data);
             patchMenu();
         }
     });
