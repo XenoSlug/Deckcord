@@ -11,6 +11,9 @@
             "linux": {
                 "command": "${workspaceFolder}/.vscode/setup.sh",
             },
+            "osx": {
+                "command": "${workspaceFolder}/.vscode/setup.sh",
+            },
             // // placeholder for windows scripts, not currently planned
             // "windows": {
             //     "command": "call -c ${workspaceFolder}\\.vscode\\setup.bat",
@@ -47,6 +50,9 @@
             "linux": {
                 "command": "${workspaceFolder}/.vscode/config.sh",
             },
+            "osx": {
+                "command": "${workspaceFolder}/.vscode/config.sh",
+            },
             // // placeholder for windows scripts, not currently planned
             // "windows": {
             //     "command": "call ${workspaceFolder}\\.vscode\\config.bat",
@@ -60,6 +66,23 @@
             "detail": "Build plugin with CLI",
             "linux": {
                 "command": "${workspaceFolder}/.vscode/build.sh",
+            },
+            "osx": {
+                "command": "${workspaceFolder}/.vscode/build.sh",
+            },
+            // // placeholder for windows logic, not currently planned
+            // "windows": {
+            //     "command": "call ${workspaceFolder}\\.vscode\\build.bat",
+            // },
+            "problemMatcher": []
+        },
+        {
+            "label": "nocli-build",
+            "group": "build",
+            "detail": "Build plugin WITHOUT CLI",
+            "osx": {
+                "command": "${workspaceFolder}/.vscode/build-nocli.sh",
+                "args": ["--no-rebuild-backend"]
             },
             // // placeholder for windows logic, not currently planned
             // "windows": {
@@ -75,7 +98,7 @@
             "dependsOrder": "sequence",
             "dependsOn": [
                 "settingscheck",
-                "cli-build",
+                "nocli-build",
             ],
             "problemMatcher": []
         },
@@ -91,7 +114,6 @@
             ],
             "command": "rsync -az --no-times --no-perms -e 'ssh -p 22 -i /home/marios/.ssh/id_rsa' out/ ${config:deckuser}@${config:deckip}:${config:deckdir}/homebrew/plugins",
             "problemMatcher": [],
-            
         },
         //
         {

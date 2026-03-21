@@ -1,4 +1,4 @@
-FROM ghcr.io/steamdeckhomebrew/holo-base:latest
+FROM ghcr.io/steamdeckhomebrew/holo-base:3.7.20
  
 RUN mkdir /pacman
 RUN sed 's/# ParallelDownloads = 10/ParallelDownloads = 1/' /etc/pacman.conf
