@@ -12,8 +12,8 @@ while [[ $# -gt 0 ]]; do
             NO_REBUILD_BACKEND=1
             shift
             ;;
-        --add-backend)
-            ADD_BACKEND=1
+        --skip-backend)
+            SKIP_BACKEND=1
             shift
             ;;
         --no-delete-backend)

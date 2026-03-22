@@ -1,7 +1,7 @@
 //Credit: https://github.com/jessebofill/DeckWebBrowser
 
 import { afterPatch, Dropdown, findInReactTree, FooterLegendProps, getReactRoot } from "@decky/ui"
-import { FC, ReactElement, ReactNode, useState } from "react"
+import { FC, ReactElement, ReactNode } from "react"
 import { FaDiscord } from "react-icons/fa"
 
 interface MainMenuItemPropsBase {
@@ -19,7 +19,7 @@ const getReactTree = () => getReactRoot(document.getElementById('root') as any)
 export const patchMenu = () => {
     const menuNode = findInReactTree(getReactTree(), (node: { memoizedProps: { navID: string } }) => node?.memoizedProps?.navID == 'MainNavMenuContainer')
     if (!menuNode || !menuNode.return?.type) {
-        //namedLogger.log('Failed to find main menu root node.')
+        console.log('Failed to find main menu root node.')
         return () => { }
     }
     const orig = menuNode.return.type
@@ -27,7 +27,7 @@ export const patchMenu = () => {
     const menuWrapper = (props: any) => {
         const ret = orig(props)
         if (!ret?.props?.children?.props?.children?.[0]?.type) {
-            //namedLogger.log('The main menu element could not be found at the expected location. Valve may have changed it.')
+            console.log('The main menu element could not be found at the expected location. Valve may have changed it.')
             return ret
         }
         if (patchedInnerMenu) {
@@ -38,7 +38,7 @@ export const patchMenu = () => {
                 const menuItems = findInReactTree(ret, (node: any[]) => Array.isArray(node) && node.some(isMenuItemElt)) as Array<any>;
 
                 if (!menuItems) {
-                    //namedLogger.log('Could not find menu items to patch.')
+                    console.log('Could not find menu items to patch.')
                     return ret
                 }
 

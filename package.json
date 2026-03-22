@@ -1,6 +1,7 @@
 {
   "name": "deckcord",
   "version": "0.3.4",
+  "type": "module",
   "description": "Easy access to discord in game mode, and related functionalities",
   "scripts": {
     "build": "shx rm -rf dist && rollup -c",

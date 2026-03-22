@@ -82,7 +82,9 @@
             "detail": "Build plugin WITHOUT CLI",
             "osx": {
                 "command": "${workspaceFolder}/.vscode/build-nocli.sh",
-                "args": ["--no-rebuild-backend"]
+                "args": [
+                    "--no-rebuild-backend"
+                ]
             },
             // // placeholder for windows logic, not currently planned
             // "windows": {
@@ -112,7 +114,7 @@
             "dependsOn": [
                 "chmodplugins"
             ],
-            "command": "rsync -az --no-times --no-perms -e 'ssh -p 22 -i /home/marios/.ssh/id_rsa' out/ ${config:deckuser}@${config:deckip}:${config:deckdir}/homebrew/plugins",
+            "command": "rsync -az --no-times --no-perms -e 'ssh -p 22 ${config:deckkey}' out/ ${config:deckuser}@${config:deckip}:${config:deckdir}/homebrew/plugins",
             "problemMatcher": [],
         },
         //
@@ -121,7 +123,7 @@
             "detail": "",
             "type": "shell",
             "group": "none",
-            "command": "echo '${config:deckdir}/homebrew/plugins/${config:pluginname}.zip' && ssh ${config:deckuser}@${config:deckip} -p ${config:deckport} ${config:deckkey} 'echo ${config:deckpass} | sudo -S mkdir 755 -p \"$(echo \"${config:deckdir}/homebrew/plugins/${config:pluginname}\" | sed \"s| |-|\")\" && echo ${config:deckpass} | sudo -S chown ${config:deckuser}:${config:deckuser} \"$(echo \"${config:deckdir}/homebrew/plugins/${config:pluginname}\" | sed \"s| |-|\")\" && echo ${config:deckpass} | sudo -S bsdtar -xzpf \"${config:deckdir}/homebrew/plugins/${config:pluginname}.zip\" -C \"$(echo \"${config:deckdir}/homebrew/plugins/${config:pluginname}\" | sed \"s| |-|g\")\" --strip-components=1 --fflags '",
+            "command": "echo '${config:deckdir}/homebrew/plugins/${config:pluginname}.zip' && ssh ${config:deckuser}@${config:deckip} -p ${config:deckport} ${config:deckkey} 'echo ${config:deckpass} | sudo -S mkdir -m 755 -p \"$(echo \"${config:deckdir}/homebrew/plugins/${config:pluginname}\" | sed \"s| |-|g\")\" && echo ${config:deckpass} | sudo -S chown ${config:deckuser}:${config:deckuser} \"$(echo \"${config:deckdir}/homebrew/plugins/${config:pluginname}\" | sed \"s| |-|g\")\" && echo ${config:deckpass} | sudo -S bsdtar -xzpf \"${config:deckdir}/homebrew/plugins/${config:pluginname}.zip\" -C \"$(echo \"${config:deckdir}/homebrew/plugins/${config:pluginname}\" | sed \"s| |-|g\")\" --fflags '",
             "problemMatcher": []
         },
         //"All-in-one" deploy task
@@ -163,7 +165,7 @@
             "detail": "chmods plugins folder to prevent perms issues",
             "type": "shell",
             "group": "none",
-            "command": "ssh ${config:deckuser}@${config:deckip} -p ${config:deckport} ${config:deckkey} 'echo '${config:deckpass}' | sudo -S chmod -R ug+rw ${config:deckdir}/homebrew/plugins/'",
+            "command": "ssh ${config:deckuser}@${config:deckip} -p ${config:deckport} ${config:deckkey} 'echo '${config:deckpass}' | sudo -S chmod -R 777 ${config:deckdir}/homebrew/plugins/'",
             "problemMatcher": []
         },
     ]
